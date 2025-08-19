@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Run detail</h1>
+<p>Date: {{ run.date }}</p>
+<p>Type: {{ run.run_type }}</p>
+<p>Distance: {{ run.distance_km }} km</p>
+<p>Pace: {{ run.pace_min_km }} /km</p>
+{% if run.heart_rate %}<p>HR: {{ run.heart_rate }}</p>{% endif %}
+{% if run.zone %}<p>Zone: {{ run.zone }}</p>{% endif %}
+{% if run.notes %}<p>Notes: {{ run.notes }}</p>{% endif %}
+<p><a href="{% url 'run_list' %}">Back to list</a></p>
+{% endblock %}
