@@ -7,4 +7,7 @@ urlpatterns = [
     path("runs/new/", views.run_create_view, name="run_create"),
     path("runs/<int:pk>/", views.run_detail_view, name="run_detail"),
     path("profile/edit/", views.profile_edit_view, name="profile_edit"),
+    path("plans/", views.plan_list_view, name="plan_list"),
+    path("planned/new/", views.planned_run_create_view, name="planned_run_create"),
+    path("calendar/", views.calendar_view, name="calendar_view"),
 ]

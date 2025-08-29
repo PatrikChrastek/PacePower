@@ -1,9 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Edit profile</h1>
+
 <form method="post">
   {% csrf_token %}
+
+  {# profile form (zatím prázdný) #}
   {{ form.as_p }}
-  <button type="submit">Save</button>
+
+  <h2>Heart rate zones</h2>
+  {{ formset.management_form }}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th><th>Min</th><th>Max</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for f in formset %}
+        <tr>
+          <td>{{ f.zone_number }}</td>
+          <td>{{ f.hr_min }}</td>
+          <td>{{ f.hr_max }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p><button type="submit">Save</button></p>
 </form>
 {% endblock %}

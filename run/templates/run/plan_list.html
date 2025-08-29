@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My training plans</h1>
+<p><a href="{% url 'planned_run_create' %}">+ Add planned run</a> | <a href="{% url 'calendar_view' %}">Calendar</a></p>
+<ul>
+  {% for p in plans %}
+    <li>{{ p.name }}{% if p.start_date %} (from {{ p.start_date }}){% endif %}</li>
+  {% empty %}
+    <li>No plans yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

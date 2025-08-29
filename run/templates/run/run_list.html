@@ -5,9 +5,16 @@
 <ul>
   {% for r in runs %}
     <li>
-      <a href="{% url 'run_detail' r.pk %}">{{ r.date }}</a>
-      — {{ r.distance_km }} km @ {{ r.pace_min_km }} ({{ r.run_type }})
-    </li>
+  <a href="{% url 'run_detail' r.pk %}">{{ r.date|date:"Y-m-d" }}</a>
+  — {{ r.distance_km }} km @ {{ r.pace_min_km }} ({{ r.run_type }})
+  {% if r.tags.all %}
+    — tags:
+    {% for t in r.tags.all %}
+      <span>{{ t.name }}</span>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  {% endif %}
+</li>
+
   {% empty %}
     <li>No runs yet.</li>
   {% endfor %}

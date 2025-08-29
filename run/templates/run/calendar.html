@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Planned runs — {{ year }}-{{ month|stringformat:"02d" }}</h1>
+<p>
+  <a href="{% url 'calendar_view' %}?year={{ prev_year }}&month={{ prev_month }}">◀ Prev</a>
+  |
+  <a href="{% url 'calendar_view' %}?year={{ next_year }}&month={{ next_month }}">Next ▶</a>
+</p>
+
+<ul>
+  {% for it in items %}
+    <li>
+      {{ it.date }} — {{ it.run_type }}{% if it.distance_km %} {{ it.distance_km }} km{% endif %}
+      {% if it.pace_target %}@ {{ it.pace_target }}{% endif %}
+      ({{ it.plan.name }})
+    </li>
+  {% empty %}
+    <li>No planned runs this month.</li>
+  {% endfor %}
+</ul>
+
+<p><a href="{% url 'planned_run_create' %}">+ Add planned run</a> | <a href="{% url 'plan_list' %}">My plans</a></p>
+{% endblock %}
